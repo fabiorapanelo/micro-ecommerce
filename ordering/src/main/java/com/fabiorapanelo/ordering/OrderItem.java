@@ -18,9 +18,9 @@ public class OrderItem {
 	private String catalogItemId;
 	private String catalogItemName;
 	private BigDecimal price;
-	private Order order;
 	private int quantity;
-
+	private Order order;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
