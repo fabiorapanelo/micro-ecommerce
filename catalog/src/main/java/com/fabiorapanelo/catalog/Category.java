@@ -18,6 +18,7 @@ public class Category {
 	private String name;
 	private Category parentCategory;
 	private List<Category> subCategories;
+	private List<CatalogItem> catalogItems;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,6 +55,15 @@ public class Category {
 
 	public void setSubCategories(List<Category> subCategories) {
 		this.subCategories = subCategories;
+	}
+
+	@OneToMany(mappedBy="mainCategory")
+	public List<CatalogItem> getCatalogItems() {
+		return catalogItems;
+	}
+
+	public void setCatalogItems(List<CatalogItem> catalogItems) {
+		this.catalogItems = catalogItems;
 	}
 
 }
