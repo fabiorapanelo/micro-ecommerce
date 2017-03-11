@@ -11,7 +11,7 @@
 	<parent>
         <groupId>com.fabiorapanelo</groupId>
         <artifactId>micro-ecommerce</artifactId>
-        <version>${microecommerce.version}</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
 	<dependencies>

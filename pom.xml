@@ -7,14 +7,13 @@
     <groupId>com.fabiorapanelo</groupId>
     <artifactId>micro-ecommerce</artifactId>
     <packaging>pom</packaging>
-    <version>${microecommerce.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>micro-ecommerce</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <microecommerce.version>0.0.1-SNAPSHOT</microecommerce.version>
     </properties>
 
     <parent>
