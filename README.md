@@ -5,7 +5,7 @@
 [travis-url]:https://travis-ci.org/fabiorapanelo/micro-ecommerce
 [travis-image]:https://img.shields.io/travis/fabiorapanelo/micro-ecommerce/master.svg
 
-An ecommerce with Microservices
+A ecommerce developed in micro-services architecture using Spring Boot
 
 Modules:
  - config-server: A [Spring configuration server](https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html)
