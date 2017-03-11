@@ -7,6 +7,7 @@
 	<packaging>jar</packaging>
 	<name>ordering</name>
 	<description>Ordering Micro Service</description>
+	<version>0.0.1-SNAPSHOT</version>
 
 	<parent>
         <groupId>com.fabiorapanelo</groupId>
