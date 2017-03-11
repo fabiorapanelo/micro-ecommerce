@@ -7,7 +7,6 @@
 	<packaging>jar</packaging>
 	<name>catalog</name>
 	<description>Catalog Micro Service</description>
-	<version>0.0.1-SNAPSHOT</version>
 
 	<parent>
         <groupId>com.fabiorapanelo</groupId>
