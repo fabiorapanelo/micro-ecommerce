@@ -8,7 +8,7 @@
 An ecommerce with Microservices
 
 Modules:
- - config-server: A Spring configuration server
+ - config-server: A [Spring configuration server](https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html)
  - discovery-server: [Eureka](https://github.com/Netflix/eureka) as service discovery
  - gateway: [Zuul](https://github.com/Netflix/zuul) as gateway service.
  - catalog: A catalog micro service
