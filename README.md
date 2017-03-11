@@ -7,3 +7,9 @@
 
 An ecommerce with Microservices
 
+Modules:
+ - config-server: A Spring configuration server
+ - discovery-server: [Eureka](https://github.com/Netflix/eureka) as service discovery
+ - gateway: [Zuul](https://github.com/Netflix/zuul) as gateway service.
+ - catalog: A catalog micro service
+ - ordering: A ordering micro service
