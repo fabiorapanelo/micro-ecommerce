@@ -19,11 +19,11 @@ Running:
 
 It requires to run the service in the following order:
 
- 1 config-server
- 2 discovery-server
- 3 gateway
- 4 Apache Solr instance:
-  - solr start -p 8983
-  - solr create -c catalog-item
- 5 catalog
- 6 ordering
+1. config-server
+2. discovery-server
+3. gateway
+4. Apache Solr instance:
+    - solr start -p 8983
+    - solr create -c catalog-item
+5. catalog
+6. ordering
