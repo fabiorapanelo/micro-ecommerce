@@ -1,0 +1,52 @@
+version: "2"
+
+services:
+  config-server:
+    build: config-server/.
+    working_dir: /
+    ports:
+      - "8888:8888"
+    command: java -Dspring.profiles.active=container -jar /config-server.jar
+
+  discovery-server:
+    build: discovery-server/.
+    working_dir: /
+    links:
+      - config-server
+    ports:
+      - "8761:8761"
+    entrypoint: ./wait-for-it.sh config-server:8888 -t 60 --
+    command: java -Dspring.profiles.active=container -jar /discovery-server.jar
+
+  gateway:
+    build: gateway/.
+    working_dir: /
+    links:
+      - config-server
+      - discovery-server
+    ports:
+      - "80:80"
+    entrypoint: ./wait-for-it.sh discovery-server:8761 -t 60 --
+    command: java -Dspring.profiles.active=container -jar /gateway.jar
+
+  catalog:
+    build: catalog/.
+    working_dir: /
+    links:
+      - config-server
+      - discovery-server
+    ports:
+      - "8081:8081"
+    entrypoint: ./wait-for-it.sh discovery-server:8761 -t 60 --
+    command: java -Dspring.profiles.active=container -jar /catalog.jar
+
+  ordering:
+    build: ordering/.
+    working_dir: /
+    links:
+      - config-server
+      - discovery-server
+    ports:
+      - "8082:8082"
+    entrypoint: ./wait-for-it.sh discovery-server:8761 -t 60 --
+    command: java -Dspring.profiles.active=container -jar /ordering.jar

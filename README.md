@@ -20,6 +20,7 @@ Running:
 It requires to run the service in the following order:
 
 1. config-server
+    - Change application.properties to point to your git repository in order to change the properties
 2. discovery-server
 3. gateway
 4. Apache Solr instance:
@@ -27,3 +28,6 @@ It requires to run the service in the following order:
     - solr create -c catalog-item
 5. catalog
 6. ordering
+
+Credits to:
+ - https://github.com/idugalic/micro-ecommerce/ - I have learned several things on his git repo. Thanks!
