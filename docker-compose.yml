@@ -25,10 +25,23 @@ services:
       - config-server
       - discovery-server
       - ordering
+      - catalog
     ports:
       - "80:80"
     entrypoint: ./wait-for-it.sh discovery-server:8761 -t 60 --
     command: java -Dspring.profiles.active=container -jar /gateway.jar
+
+  catalog:
+    build: catalog/.
+    working_dir: /
+    links:
+      - config-server
+      - discovery-server
+      - search-engine
+    ports:
+      - "8081:8081"
+    entrypoint: ./wait-for-it.sh discovery-server:8761 -t 60 --
+    command: java -Dspring.profiles.active=container -jar /catalog.jar
 
   ordering:
     build: ordering/.
@@ -40,3 +53,7 @@ services:
       - "8082:8082"
     entrypoint: ./wait-for-it.sh discovery-server:8761 -t 60 --
     command: java -Dspring.profiles.active=container -jar /ordering.jar
+  search-engine:
+    image: solr:6
+    ports:
+      - "8983:8983"
