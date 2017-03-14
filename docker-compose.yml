@@ -24,21 +24,11 @@ services:
     links:
       - config-server
       - discovery-server
+      - ordering
     ports:
       - "80:80"
     entrypoint: ./wait-for-it.sh discovery-server:8761 -t 60 --
     command: java -Dspring.profiles.active=container -jar /gateway.jar
-
-  catalog:
-    build: catalog/.
-    working_dir: /
-    links:
-      - config-server
-      - discovery-server
-    ports:
-      - "8081:8081"
-    entrypoint: ./wait-for-it.sh discovery-server:8761 -t 60 --
-    command: java -Dspring.profiles.active=container -jar /catalog.jar
 
   ordering:
     build: ordering/.
