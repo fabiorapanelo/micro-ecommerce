@@ -16,7 +16,7 @@ public class CatalogApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner run(@Autowired SearchableCatalogItemRepository repository) {
+	public CommandLineRunner run(@Autowired SearchableItemRepository repository) {
 		
 		return (args) -> {
 

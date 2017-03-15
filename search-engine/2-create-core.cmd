@@ -1,1 +1,1 @@
-docker exec -it --user=solr microservices_search-engine_1 bin/solr create_core -c catalog-item
+docker exec -it --user=solr search-engine bin/solr create_core -c item

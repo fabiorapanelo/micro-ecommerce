@@ -6,21 +6,24 @@ import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
-@SolrDocument(solrCoreName = "catalog-item")
-public class SearchableCatalogItem {
+@SolrDocument(solrCoreName = "item")
+public class SearchableItem {
 
 	@Id
 	@Field
 	private String id;
 
-	@Field
+	@Field("name_t")
 	private String name;
 
-	@Field("chracteristics")
+	@Field("chracteristics_ss")
 	private List<String> chracteristics;
 
-	@Field("categories")
+	@Field("categories_ss")
 	private List<String> categories;
+
+	@Field("type_s")
+	private String type;
 
 	public String getId() {
 		return id;
@@ -54,11 +57,18 @@ public class SearchableCatalogItem {
 		this.categories = categories;
 	}
 
-	@Override
-	public String toString() {
-		return "SearchableCatalogItem [id=" + id + ", name=" + name + ", chracteristics=" + chracteristics
-				+ ", categories=" + categories + "]";
+	public String getType() {
+		return type;
 	}
 
-	
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "SearchableItem [id=" + id + ", name=" + name + ", chracteristics=" + chracteristics
+				+ ", categories=" + categories + ", type=" + type + "]";
+	}
+
 }

@@ -1,48 +1,43 @@
 package com.fabiorapanelo.catalog;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SolrRestController {
 
-	private SearchableCatalogItemRepository searchableCatalogItemRepository;
+	private SearchableItemRepository searchableItemRepository;
 	private CatalogItemRepository catalogItemRepository;
+	private CategoryRepository categoryRepository;
+	
+	
 
-	public SolrRestController(SearchableCatalogItemRepository searchableCatalogItemRepository,
-			CatalogItemRepository catalogItemRepository) {
-		this.searchableCatalogItemRepository = searchableCatalogItemRepository;
+	public SolrRestController(SearchableItemRepository searchableCatalogItemRepository,
+			CatalogItemRepository catalogItemRepository,
+			CategoryRepository categoryRepository) {
+		this.searchableItemRepository = searchableCatalogItemRepository;
 		this.catalogItemRepository = catalogItemRepository;
+		this.categoryRepository = categoryRepository;
 	}
 
 	@PutMapping("/solr/reindex")
 	public void reindexSolr() {
-		searchableCatalogItemRepository.deleteAll();
+		searchableItemRepository.deleteAll();
 
 		Iterable<CatalogItem> catalogItems = catalogItemRepository.findAll();
 
 		for (CatalogItem catalogItem : catalogItems) {
 
-			SearchableCatalogItem sci = new SearchableCatalogItem();
-			sci.setId(catalogItem.getId().toString());
-			sci.setName(catalogItem.getName());
-			List<String> chracteristics = catalogItem.getChracteristics()
-					.stream()
-					.map(c -> c.getValue())
-					.collect(Collectors.toList());
-			sci.setChracteristics(chracteristics);
-
-			List<String> categories = catalogItem.getCategories().
-					stream()
-					.map(c -> c.getName())
-					.collect(Collectors.toList());
-
-			categories.add(catalogItem.getMainCategory().getName());
-			sci.setCategories(categories);
-			searchableCatalogItemRepository.save(sci);
+			SearchableItem sci = SolrUtils.convertCatalogItem2SearchableItem(catalogItem);
+			searchableItemRepository.save(sci);
+		}
+		
+		Iterable<Category> categories = categoryRepository.findAll();
+		
+		for(Category category: categories){
+			
+			SearchableItem sci = SolrUtils.convertCategory2SearchableItem(category);
+			searchableItemRepository.save(sci);
 		}
 	}
 
