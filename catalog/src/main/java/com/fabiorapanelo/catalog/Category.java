@@ -3,6 +3,7 @@ package com.fabiorapanelo.catalog;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,7 @@ public class Category {
 		this.id = id;
 	}
 
+	@Column(unique=true)
 	@NotNull
 	public String getName() {
 		return name;
@@ -48,7 +50,7 @@ public class Category {
 		this.parentCategory = parentCategory;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="parentCategory")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "parentCategory")
 	public List<Category> getSubCategories() {
 		return subCategories;
 	}
@@ -57,7 +59,7 @@ public class Category {
 		this.subCategories = subCategories;
 	}
 
-	@OneToMany(mappedBy="mainCategory")
+	@OneToMany(mappedBy = "mainCategory")
 	public List<CatalogItem> getCatalogItems() {
 		return catalogItems;
 	}
