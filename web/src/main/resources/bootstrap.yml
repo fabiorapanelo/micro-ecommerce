@@ -29,9 +29,6 @@ eureka:
 ribbon:
   eureka:
     enabled: false
-feign:
-  hystrix:
-    enabled: false
 
 catalog:
   ribbon:
