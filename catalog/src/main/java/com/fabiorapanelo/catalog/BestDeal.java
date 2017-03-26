@@ -7,12 +7,11 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Chracteristic {
+public class BestDeal {
 
 	private Long id;
-	private String name;
-	private String value;
-
+	private String imageId;
+	private String redirectTo;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,20 +24,21 @@ public class Chracteristic {
 	}
 
 	@NotNull
-	public String getName() {
-		return name;
+	public String getImageId() {
+		return imageId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setImageId(String imageId) {
+		this.imageId = imageId;
 	}
 
 	@NotNull
-	public String getValue() {
-		return value;
+	public String getRedirectTo() {
+		return redirectTo;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setRedirectTo(String redirectTo) {
+		this.redirectTo = redirectTo;
 	}
+
 }

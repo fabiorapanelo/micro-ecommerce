@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: web
+  cloud:
+    config:
+      uri: http://localhost:8888
+---
+
+spring:
+  profiles: container
+  cloud:
+     config:
+        uri: http://config-server:8888
+---
+
+spring:
+  profiles: eclipse
+  cloud:
+    config:
+      enabled: false
+    
+server:
+  port: 8083
+  contextPath: /web
+  
+eureka:
+  client:
+    enabled: false
+ribbon:
+  eureka:
+    enabled: false
+feign:
+  hystrix:
+    enabled: false
+
+catalog:
+  ribbon:
+    listOfServers: localhost:8081
+  query:
+    searchable-item:
+      find-by-name: /catalog/searchableItems/search/findByName?name=
+    category:
+      find-by-parent-category-is-null: /catalog/categories/search/findByParentCategoryIsNull

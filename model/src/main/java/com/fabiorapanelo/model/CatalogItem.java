@@ -1,17 +1,11 @@
-package com.fabiorapanelo.catalog;
+package com.fabiorapanelo.model;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CatalogItem {
 
 	private Long id;
@@ -24,8 +18,6 @@ public class CatalogItem {
 	private Category mainCategory;
 	private List<Category> categories;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -34,7 +26,6 @@ public class CatalogItem {
 		this.id = id;
 	}
 
-	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -51,7 +42,6 @@ public class CatalogItem {
 		this.description = description;
 	}
 
-	@NotNull
 	public String getSku() {
 		return sku;
 	}
@@ -60,7 +50,6 @@ public class CatalogItem {
 		this.sku = sku;
 	}
 
-	@NotNull
 	public Long getQuantity() {
 		return quantity;
 	}
@@ -69,7 +58,6 @@ public class CatalogItem {
 		this.quantity = quantity;
 	}
 
-	@ManyToMany
 	public List<Chracteristic> getChracteristics() {
 		return chracteristics;
 	}
@@ -78,7 +66,6 @@ public class CatalogItem {
 		this.chracteristics = chracteristics;
 	}
 
-	@NotNull
 	public BigDecimal getPrice() {
 		return price;
 	}
@@ -87,8 +74,6 @@ public class CatalogItem {
 		this.price = price;
 	}
 	
-	@ManyToOne
-	@NotNull
 	public Category getMainCategory() {
 		return mainCategory;
 	}
@@ -97,7 +82,6 @@ public class CatalogItem {
 		this.mainCategory = mainCategory;
 	}
 
-	@ManyToMany
 	public List<Category> getCategories() {
 		return categories;
 	}
@@ -105,5 +89,5 @@ public class CatalogItem {
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
-	
+
 }

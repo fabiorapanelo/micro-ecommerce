@@ -1,28 +1,20 @@
-package com.fabiorapanelo.catalog;
+package com.fabiorapanelo.model;
 
 import java.util.List;
 
-import org.apache.solr.client.solrj.beans.Field;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.solr.core.mapping.SolrDocument;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@SolrDocument(solrCoreName = "item")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SearchableItem {
 
-	@Id
-	@Field
 	private String id;
 
-	@Field("name_t")
 	private String name;
 
-	@Field("chracteristics_ss")
 	private List<String> chracteristics;
 
-	@Field("categories_ss")
 	private List<String> categories;
-	
-	@Field("type_s")
+
 	private String type;
 
 	public String getId() {
@@ -70,4 +62,5 @@ public class SearchableItem {
 		return "SearchableItem [id=" + id + ", name=" + name + ", chracteristics=" + chracteristics
 				+ ", categories=" + categories + ", type=" + type + "]";
 	}
+
 }

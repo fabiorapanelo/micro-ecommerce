@@ -51,7 +51,7 @@ public class SolrUtils {
 			categoryList = categories.stream().map(c -> c.getName()).collect(Collectors.toSet());	
 		}
 		
-		Category mainCategory = catalogItem.getMainCategory();
+		Category mainCategory = (Category) catalogItem.getMainCategory();
 		if(mainCategory != null){
 			categoryList.add(mainCategory.getName());
 		}

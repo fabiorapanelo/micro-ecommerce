@@ -1,4 +1,4 @@
-package com.fabiorapanelo.catalog;
+package com.fabiorapanelo;
 
 import java.util.List;
 
@@ -9,16 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fabiorapanelo.model.Category;
+import com.fabiorapanelo.model.SearchableItem;
+
 @Controller
-public class CatalogController {
+public class WelcomeController {
 	
-	private CategoryRepository categoryRepository;
-	private SearchableItemRepository searchableItemRepository; 
+	private CatalogRestTemplate catalogRestTemplate;
 	
 	@Autowired
-	public CatalogController(CategoryRepository categoryRepository, SearchableItemRepository searchableItemRepository){
-		this.categoryRepository = categoryRepository;
-		this.searchableItemRepository = searchableItemRepository;
+	public WelcomeController(CatalogRestTemplate catalogRestTemplate){
+		this.catalogRestTemplate = catalogRestTemplate;
 	}
 	
 	@GetMapping("/index.html")
@@ -27,11 +28,11 @@ public class CatalogController {
 		List<SearchableItem> items = null;
 		if(StringUtils.isNotEmpty(query)){
 			String solrQuery = this.createSolrQuery(query);
-			items = searchableItemRepository.findByName(solrQuery, null);
+			items = catalogRestTemplate.searchableItemFindByName(solrQuery);
 		}
 		model.addAttribute("items", items);
 		
-		List<Category> categories = categoryRepository.findByParentCategoryIsNull(null);
+		List<Category> categories = catalogRestTemplate.categoryFindByParentCategoryIsNull();
 		model.addAttribute("categories", categories);
 		model.addAttribute("query", query);
 		

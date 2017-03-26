@@ -1,21 +1,14 @@
-package com.fabiorapanelo.catalog;
+package com.fabiorapanelo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Chracteristic {
 
 	private Long id;
 	private String name;
 	private String value;
 
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -24,7 +17,6 @@ public class Chracteristic {
 		this.id = id;
 	}
 
-	@NotNull
 	public String getName() {
 		return name;
 	}
@@ -33,7 +25,6 @@ public class Chracteristic {
 		this.name = name;
 	}
 
-	@NotNull
 	public String getValue() {
 		return value;
 	}
@@ -41,4 +32,5 @@ public class Chracteristic {
 	public void setValue(String value) {
 		this.value = value;
 	}
+
 }
